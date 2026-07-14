@@ -1,0 +1,158 @@
+//============================================
+//          __    _           __
+//         / /_  (_)___  ____/ /____
+//        / __ \/ / __ \/ __  / ___/
+//       / /_/ / / / / / /_/ (__  )
+//      /_.___/_/_/ /_/\__,_/____/
+
+//============================================
+
+binds {
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    // Custom Script Launchers
+    Mod+V hotkey-overlay-title="Clipboard Menu" { spawn "sh" "-c" "~/.local/bin/clip_menu.sh"; }
+    Mod+Shift+C hotkey-overlay-title="Wipe Clipboard" { spawn "sh" "-c" "~/.local/bin/clip_menu.sh --wipe"; }
+    Mod+F11 hotkey-overlay-title="Record Screen" { spawn "sh" "-c" "~/.local/bin/record.sh"; }
+    Mod+Tab hotkey-overlay-title="Kumin Menu" { spawn "sh" "-c" "~/.local/bin/kuminmenu.sh"; }
+    Alt+W hotkey-overlay-title="Wallpaper Select" { spawn "sh" "-c" "~/.local/bin/wallselect.sh"; }
+    Alt+Shift+W hotkey-overlay-title="Lively Wallpaper Select" { spawn "sh" "-c" "~/.local/bin/wallmpvselect.sh"; }
+    Mod+Shift+P hotkey-overlay-title="Power Menu" { spawn "sh" "-c" "~/.local/bin/shutdown.sh"; }
+    Alt+P hotkey-overlay-title="Repos" { spawn "sh" "-c" "~/.local/bin/repos-rofi.sh"; }
+    Alt+T hotkey-overlay-title="Tmux" { spawn "sh" "-c" "~/.local/bin/tmux-rofi.sh"; }
+    Alt+B hotkey-overlay-title="BookMarks" { spawn "sh" "-c" "~/.local/bin/bookmarks-rofi.sh"; }
+    Mod+X hotkey-overlay-title="PowerProfiles" { spawn "sh" "-c" "~/.local/bin/powerprofiles.sh"; }
+
+    // Application Launchers
+    Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
+    Mod+D hotkey-overlay-title="Run Application Menu: rofi" { spawn "rofi" "-show" "drun"; }
+    Mod+E hotkey-overlay-title="Open File Manager: thunar" { spawn "thunar"; }
+    Mod+B hotkey-overlay-title="Open Browser: firefox" { spawn "firefox"; }
+    Mod+Slash hotkey-overlay-title="Open Emoji Menu" { spawn "rofi" "-modi" "emoji" "-show" "emoji"; }
+    Mod+N hotkey-overlay-title="Dismiss All Notifications" { spawn "makoctl" "dismiss" "-a"; }
+    Mod+Shift+N hotkey-overlay-title="Restore Last Notification" { spawn "makoctl" "restore"; }
+
+    // Screenshots
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+
+    // Window Management
+    Mod+Q repeat=false { close-window; }
+    Mod+Space { toggle-window-floating; }
+    Mod+O repeat=false { toggle-overview; }
+    Mod+R { switch-preset-column-width; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+Alt+F { maximize-window-to-edges; }
+    Mod+Ctrl+F { expand-column-to-available-width; }
+
+    Mod+H     { focus-column-left; }
+    Mod+Left  { focus-column-left; }
+    Mod+A     { focus-column-left; }
+    Mod+J     { focus-window-down; }
+    Mod+Down  { focus-window-down; }
+    Mod+K     { focus-window-up; }
+    Mod+Up    { focus-window-up; }
+    Mod+Right { focus-column-right; }
+    Mod+S     { focus-column-right; }
+
+    Mod+Ctrl+H     { move-column-left; }
+    Mod+Ctrl+A     { move-column-left; }
+    Mod+Ctrl+Left  { move-column-left; }
+    Mod+Ctrl+J     { move-window-down; }
+    Mod+Ctrl+Down  { move-window-down; }
+    Mod+Ctrl+K     { move-window-up; }
+    Mod+Ctrl+Up    { move-window-up; }
+    Mod+Ctrl+L     { move-column-right; }
+    Mod+Ctrl+S     { move-column-right; }
+    Mod+Ctrl+Right { move-column-right; }
+
+    Mod+Home { focus-column-first; }
+    Mod+End  { focus-column-last; }
+    Mod+Ctrl+Home { move-column-to-first; }
+    Mod+Ctrl+End  { move-column-to-last; }
+
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+Comma  { consume-window-into-column; }
+    Mod+Period { expel-window-from-column; }
+
+    Mod+Shift+R { switch-preset-column-width-back; }
+    Mod+Ctrl+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R { reset-window-height; }
+
+    Mod+C hotkey-overlay-title="Center Column (Remapped)" { center-column; }
+    Mod+Ctrl+C { center-visible-columns; }
+
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    Mod+W { toggle-column-tabbed-display; }
+    Mod+Shift+W { toggle-column-tabbed-display; }
+    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+
+    // Mouse & Touchpad Wheels
+    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+
+    Mod+WheelScrollRight      { focus-column-right; }
+    Mod+WheelScrollLeft       { focus-column-left; }
+    Mod+Ctrl+WheelScrollRight { move-column-right; }
+    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
+
+    Mod+Shift+WheelScrollDown      { focus-column-right; }
+    Mod+Shift+WheelScrollUp        { focus-column-left; }
+    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+
+    // Workspace Navigation (Keyboard)
+    Mod+U { focus-workspace-down; }
+    Mod+I { focus-workspace-up; }
+    Mod+Ctrl+U { move-column-to-workspace-down; }
+    Mod+Ctrl+I { move-column-to-workspace-up; }
+
+    // Workspace Indices (1-9)
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+Ctrl+1 { move-column-to-workspace 1; }
+    Mod+Ctrl+2 { move-column-to-workspace 2; }
+    Mod+Ctrl+3 { move-column-to-workspace 3; }
+    Mod+Ctrl+4 { move-column-to-workspace 4; }
+    Mod+Ctrl+5 { move-column-to-workspace 5; }
+    Mod+Ctrl+6 { move-column-to-workspace 6; }
+    Mod+Ctrl+7 { move-column-to-workspace 7; }
+    Mod+Ctrl+8 { move-column-to-workspace 8; }
+    Mod+Ctrl+9 { move-column-to-workspace 9; }
+
+    // Misc actions
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+    Mod+Shift+E { quit; }
+
+    // Audio - Media Controls
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 2%+ && notify-send -h string:x-canonical-private-synchronous:vol -t 1500 'Volume' \"$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2 * 100}')%\""; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && notify-send -h string:x-canonical-private-synchronous:vol -t 1500 'Volume' \"$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2 * 100}')%\""; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && notify-send -h string:x-canonical-private-synchronous:vol -t 1500 'Mute Toggled' \"$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2 * 100}')%\""; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle && notify-send -h string:x-canonical-private-synchronous:vol -t 1500 'Mic Muted Toggled' \"$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{print $2 * 100}')%\""; }
+
+    XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioPause       allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
+    XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
+    XF86AudioNext        allow-when-locked=true { spawn-sh "playerctl next"; }
+
+    XF86MonBrightnessUp allow-when-locked=true { spawn-sh "brightnessctl -e4 -n2 set 2%+ && notify-send -h string:x-canonical-private-synchronous:bright -t 1500 'Brightness' \"$(brightnessctl -m | cut -d, -f4)\""; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "brightnessctl -e4 -n2 set 2%- && notify-send -h string:x-canonical-private-synchronous:bright -t 1500 'Brightness' \"$(brightnessctl -m | cut -d, -f4)\""; }
+}

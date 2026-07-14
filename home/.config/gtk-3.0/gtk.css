@@ -1,0 +1,147 @@
+@import url("../../.local/state/kumin_theme/colors.css");
+
+/* ==========================================
+   THUNAR WINDOW CONFIGURATION
+   ========================================== */
+
+.thunar {
+    background-color: rgba(40, 40, 40, 0.95);
+}
+
+.thunar .view {
+    background-color: transparent;
+    color: #ebdbb2;
+}
+
+.thunar headerbar,
+.thunar toolbar {
+    background-color: rgba(235, 219, 178, 0.03);
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(235, 219, 178, 0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.thunar toolbar button {
+    border-radius: 99px;
+    padding: 6px 14px;
+    margin: 0 4px;
+    background-color: rgba(235, 219, 178, 0.05);
+    color: #ebdbb2;
+    border: 1px solid rgba(235, 219, 178, 0.02);
+    transition: all 0.2s ease-in-out;
+}
+
+.thunar toolbar button:hover {
+    background-color: @accent_color;
+    color: #282828;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.thunar toolbar button:checked,
+.thunar toolbar button:active {
+    background-color: @accent_color;
+    color: #282828;
+}
+
+.thunar .sidebar {
+    background-color: rgba(29, 32, 33, 0.6);
+    padding: 10px 8px;
+    border-right: 1px solid rgba(235, 219, 178, 0.05);
+}
+
+.thunar .sidebar treeview row {
+    padding: 6px 8px;
+    min-height: 34px;
+}
+
+.thunar .sidebar treeview row:selected {
+    background-color: @accent_color;
+    color: #282828;
+    border-radius: 12px;
+}
+
+.thunar .view:selected,
+.thunar iconview:selected {
+    background-color: @accent_color;
+    color: #282828;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.thunar notebook > header {
+    background-color: transparent;
+    padding: 8px;
+    border: none;
+}
+
+.thunar notebook > header > tabs {
+    background-color: transparent;
+}
+
+.thunar notebook > header > tabs > tab {
+    padding: 6px 16px;
+    border-radius: 99px;
+    background-color: rgba(235, 219, 178, 0.06);
+    margin: 0 4px;
+    color: rgba(235, 219, 178, 0.6);
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.thunar notebook > header > tabs > tab:hover {
+    background-color: rgba(235, 219, 178, 0.12);
+    color: #ebdbb2;
+}
+
+.thunar notebook > header > tabs > tab:checked {
+    background-color: @accent_color;
+    color: #282828;
+    border: 1px solid rgba(235, 219, 178, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.thunar statusbar {
+    background-color: transparent;
+    padding: 6px 14px;
+    border-top: 1px solid rgba(235, 219, 178, 0.05);
+    color: rgba(235, 219, 178, 0.5);
+}
+
+.thunar paned,
+.thunar paned separator,
+.thunar separator,
+.thunar notebook,
+.thunar notebook stack {
+    border-style: none;
+    background-color: transparent;
+}
+
+/* ==========================================
+   MENU CONFIGURATION (Right Click Menu)
+   ========================================== */
+
+menu,
+.popup {
+    background-color: rgba(60, 56, 54, 0.98);
+    border: 1px solid rgba(235, 219, 178, 0.08);
+    border-radius: 14px;
+    padding: 6px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+}
+
+menu menuitem {
+    border-radius: 8px;
+    padding: 6px 12px;
+    color: #ebdbb2;
+}
+
+menu menuitem:hover {
+    background-color: @accent_color;
+    color: #282828;
+}
+
+menu separator {
+    background-color: rgba(235, 219, 178, 0.05);
+    margin: 4px 8px;
+    min-height: 1px;
+}

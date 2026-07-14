@@ -1,0 +1,65 @@
+//================================================================
+//         ___          _                 __  _
+//        /   |  ____  (_)___ ___  ____ _/ /_(_)___  ____
+//       / /| | / __ \/ / __ `__ \/ __ `/ __/ / __ \/ __ \
+//      / ___ |/ / / / / / / / / / /_/ / /_/ / /_/ / / / /
+//     /_/  |_/_/ /_/_/_/ /_/ /_/\__,_/\__/_/\____/_/ /_/
+//
+//================================================================
+
+animations {
+    window-open {
+        duration-ms 60
+        curve "ease-out-expo"
+    }
+
+    window-close {
+        duration-ms 60
+        curve "ease-out-expo"
+    }
+
+    horizontal-view-movement {
+        duration-ms 60
+        curve "ease-out-expo"
+    }
+
+    window-movement {
+        duration-ms 60
+        curve "ease-out-expo"
+    }
+
+    window-resize {
+        duration-ms 60
+        curve "ease-out-expo"
+    }
+
+    config-notification-open-close {
+        duration-ms 60
+        curve "ease-out-expo"
+    }
+
+    exit-confirmation-open-close {
+        duration-ms 60
+        curve "ease-out-expo"
+    }
+
+    screenshot-ui-open {
+        duration-ms 60
+        curve "ease-out-expo"
+    }
+
+    overview-open-close {
+        duration-ms 60
+        curve "ease-out-expo"
+    }
+
+    recent-windows-close {
+        duration-ms 60
+        curve "ease-out-expo"
+    }
+
+    workspace-switch {
+        duration-ms 60
+        curve "ease-out-expo"
+    }
+}

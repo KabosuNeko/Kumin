@@ -1,0 +1,24 @@
+//============================================
+//         _____ __             __
+//        / ___// /_____ ______/ /_
+//        \__ \/ __/ __ `/ ___/ __/
+//       ___/ / /_/ /_/ / /  / /_
+//      /____/\__/\__,_/_/   \__/
+//
+//============================================
+
+spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
+spawn-at-startup "systemctl" "--user" "import-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-at-startup "mako"
+spawn-at-startup "swayidle"
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
+spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+spawn-at-startup "sway-audio-idle-inhibit"
+spawn-at-startup "awww-daemon"
+spawn-at-startup "awww-daemon" "-n" "awww-daemon-backdrop"
+spawn-at-startup "waybar"
+
+// Optional
+spawn-at-startup "fcitx5" "-d"
+spawn-at-startup "wlsunset" "-l" "11.0" "-L" "105.0" "-t" "4000" "-T" "6500"

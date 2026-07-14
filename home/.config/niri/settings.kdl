@@ -1,0 +1,101 @@
+//================================================
+//         _____      __  __  _
+//        / ___/___  / /_/ /_(_)___  ____ _
+//        \__ \/ _ \/ __/ __/ / __ \/ __ `/
+//       ___/ /  __/ /_/ /_/ / / / / /_/ /
+//      /____/\___/\__/\__/_/_/ /_/\__, /
+//                                /____/
+//================================================
+
+overview {
+    zoom 0.5
+    backdrop-color "#262626"
+
+    workspace-shadow {
+        softness 40
+        spread 10
+        offset x=0 y=10
+        color "#00000050"
+    }
+}
+
+cursor {
+    xcursor-theme "Bibata-Modern-Amber"
+    xcursor-size 24
+    hide-when-typing
+}
+
+layout {
+    gaps 12
+    center-focused-column "never"
+    always-center-single-column
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width {
+        proportion 0.5
+    }
+
+    focus-ring { off; }
+    border { off; }
+
+    shadow {
+        on
+        draw-behind-window true
+        softness 30
+        spread 5
+        offset x=5 y=10
+        color "#0007"
+    }
+
+    tab-indicator {
+        on
+        hide-when-single-tab
+        place-within-column
+        gap 10
+        width 4
+        length total-proportion=1.0
+        position "right"
+        gaps-between-tabs 4
+        corner-radius 16
+        active-color "red"
+        inactive-color "gray"
+        urgent-color "blue"
+    }
+}
+
+gestures {
+    dnd-edge-view-scroll {
+        trigger-width 30
+        delay-ms 100
+        max-speed 1500
+    }
+
+    dnd-edge-workspace-switch {
+        trigger-height 50
+        delay-ms 100
+        max-speed 1500
+    }
+}
+
+input {
+    focus-follows-mouse
+
+    keyboard {
+        numlock
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+    }
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+

@@ -1,0 +1,163 @@
+# Kumin
+
+<p><br/></p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/45a8450f-2c36-46b7-a130-9d6132b87d3e" alt="Kumin Logo" style="width: 192px" />
+</p>
+<p><br/></p>
+
+**A niri dotfile setup that doesn't suck.**
+
+Kumin is a Niri configuration for Arch-based distros. It is highly optimized (~900MB/16GB RAM on boot), super clean, simple, and just works.
+
+## Preview
+
+| <img width="1920" height="1080" alt="screenshot_1" src="https://github.com/user-attachments/assets/7cbe867f-f2a7-446d-b5ba-3d47307dfebb" /> | <img width="1920" height="1080" alt="screenshot_2" src="https://github.com/user-attachments/assets/bbd942b4-3582-4a15-a6e3-9727f965456a" /> |
+|---|---|
+| <img width="1920" height="1080" alt="screenshot_3" src="https://github.com/user-attachments/assets/1472d4a5-90df-47b2-b860-808c65e74fa0" /> | <img width="1920" height="1080" alt="screenshot_4" src="https://github.com/user-attachments/assets/9d873dd0-490b-4821-a595-1fe7b249b905" /> |
+
+## Core Components
+
+| Category        | Software                                                                              |
+| --------------- | ------------------------------------------------------------------------------------- |
+| Compositor      | [Niri](https://github.com/YaLTeR/niri)                                                |
+| Terminal        | [Foot](https://codeberg.org/dnkl/foot)                                                |
+| Status Bar      | [Waybar](https://github.com/Alexays/Waybar)                                           |
+| Launcher        | [Rofi](https://github.com/davatorium/rofi)                                            |
+| Notifications   | [Mako](https://github.com/emersion/mako)                                              |
+| Lock Screen     | [Swaylock-effects](https://github.com/jirutka/swaylock-effects)                       |
+| Idle Daemon     | [Swayidle](https://github.com/swaywm/swayidle)                                        |
+| Wallpaper       | [Awww](https://github.com/GhostNaN/awww) / [mpvpaper](https://github.com/GhostNaN/mpvpaper) |
+| System Fetch    | [Fastfetch](https://github.com/fastfetch-cli/fastfetch)                               |
+| Power Profiles  | [power-profiles-daemon](https://gitlab.freedesktop.org/upower/power-profiles-daemon)  |
+| Display Manager | [Ly](https://github.com/fairyglade/ly)                                                |
+| Browser         | [Firefox-pure](https://packages.cachyos.org/package/cachyos/x86_64/firefox-pure)      |
+
+- **Theme**: [Gruvbox-BL-LB-dark](https://www.gnome-look.org/p/1681313)
+- **Icons**: [Gruvbox-Plus-Icon](https://www.gnome-look.org/p/1961046)
+- **Cursor**: [Bibata-Modern-Amber](https://www.gnome-look.org/p/1914819)
+
+## Features
+
+- **Dynamic accent color** — extracts the dominant color from your wallpaper via `colorthief` and propagates it across all UI surfaces (Waybar, Rofi, Foot, Mako, Swaylock, GTK) automatically
+- **GNU Stow deployment** — symlink-based, safe to rerun, trivial to uninstall
+- **Hardware-adaptive** — no hardcoded monitor names, backlight devices, battery IDs, or GPU drivers
+- **Progressive idle** — 300s dim → 330s lock → 360s monitor off → 600s suspend
+- **Integrated menu system** — `Mod+Tab` opens a Rofi menu tree (General → Theme → Settings)
+
+## Installation
+
+### Prerequisites
+
+- Arch Linux (or Arch-based like CachyOS, EndeavourOS)
+- Git
+- An active internet connection
+
+### Fresh Install
+
+```sh
+git clone https://github.com/KabosuNeko/Kumin.git ~/Kumin
+cd ~/Kumin
+chmod +x install.sh
+./install.sh
+```
+
+The script is fully interactive — each phase prompts for confirmation:
+
+1. Installs `yay` (AUR helper) if needed
+2. Ensures `stow`, `git`, and `curl` are available
+3. Installs all packages from `packages.txt`
+4. Creates required directories
+5. Deploys dotfiles via **GNU Stow** (symlinks to `~/.config`, `~/.local/bin`, `~/Pictures/Wallpapers`)
+6. Installs Fish shell (optional, with confirmation for default shell)
+7. Extracts GTK theme and icon packs to `~/.themes` and `~/.icons`
+8. Enables systemd services with safety checks (won't break TTY login)
+9. Generates the unified theme state from your wallpaper
+
+### Daily Management
+
+```sh
+# Update after pulling changes:
+cd ~/Kumin && git pull && stow --restow -t ~ home
+
+# Uninstall (remove symlinks, your files are untouched):
+cd ~/Kumin && stow -D -t ~ home
+
+# Preview what would change:
+cd ~/Kumin && stow -n -t ~ home
+```
+
+### Firefox Custom CSS
+
+Open Firefox at least once to generate a profile, then:
+
+```sh
+cd ~/Kumin
+chmod +x firefox-css.sh
+./firefox-css.sh
+```
+
+> **Note**: Firefox-pure is a pre-hardened Firefox build by the CachyOS team, optimized for Wayland with privacy/security defaults. It's not recommended to layer additional `user.js` configs (Betterfox, Arkenfox, etc.) on top. For standard Firefox, uninstall `firefox-pure` and install the regular package instead. Import my uBlock Origin settings from `ublock-backup.txt` and add your own regional filters.
+
+## Directory Structure
+
+```
+Kumin/
+├── home/                    ← stow target (-t ~)
+│   ├── .config/
+│   │   ├── niri/            ← WM config (split into .kdl modules)
+│   │   ├── waybar/          ← bar config + style.css
+│   │   ├── rofi/            ← launcher theme + config
+│   │   ├── foot/            ← terminal config
+│   │   ├── mako/            ← notification daemon
+│   │   ├── swaylock/        ← lock screen
+│   │   ├── swayidle/        ← idle management
+│   │   ├── fish/            ← shell config
+│   │   ├── tmux/            ← multiplexer config
+│   │   ├── fastfetch/       ← system fetch
+│   │   ├── gtk-3.0/         ← GTK CSS overrides
+│   │   └── xdg-desktop-portal/
+│   ├── .local/bin/          ← custom scripts (17 scripts)
+│   └── Pictures/Wallpapers/ ← wallpaper collection
+├── firefox/                 ← Firefox userChrome.css
+├── icons/                   ← GTK icon pack (tar.xz)
+├── themes/                  ← GTK theme (tar.xz)
+├── install.sh               ← fresh install script
+├── firefox-css.sh           ← Firefox CSS installer
+└── packages.txt             ← full package list
+```
+
+## Keybinds
+
+All bindings use `Mod` (Super/Windows key) unless noted otherwise.
+
+| Key               | Action                                  |
+| ----------------- | --------------------------------------- |
+| `Mod+Return`      | Terminal (Foot)                         |
+| `Mod+D`           | App launcher (Rofi drun)                |
+| `Mod+Tab`         | Kumin menu (theme, settings, utilities) |
+| `Mod+Q`           | Close window                            |
+| `Mod+Space`       | Toggle floating                         |
+| `Mod+O`           | Toggle overview                         |
+| `Mod+F`           | Maximize column                         |
+| `Mod+Shift+F`     | Fullscreen window                       |
+| `Mod+H/J/K/L`     | Focus left / down / up / right          |
+| `Mod+Ctrl+H/J/K/L`| Move column                             |
+| `Mod+1-9`         | Focus workspace 1–9                     |
+| `Mod+Ctrl+1-9`    | Move to workspace 1–9                   |
+| `Mod+R`           | Cycle column width (1/3, 1/2, 2/3)      |
+| `Mod+C`           | Center column                           |
+| `Mod+W`           | Toggle tabbed display                   |
+| `Mod+[` / `]`     | Consume/expel window left or right       |
+| `Mod+-`/`Mod+=`   | Adjust column width                     |
+| `Mod+B`           | Browser (Firefox)                       |
+| `Mod+V`           | Clipboard history                       |
+| `Mod+Shift+/`     | Hotkey overlay                          |
+| `Mod+Shift+E`     | Quit Niri                               |
+| `Print`           | Screenshot (region)                     |
+| `Ctrl+Print`      | Screenshot (output)                     |
+| `Alt+Print`       | Screenshot (window)                     |
+| `Mod+F11`         | Screen recording                        |
+| `Mod+X`           | Power profiles                          |
+
+Media keys (volume, brightness, playback) are mapped to standard XF86 symbols.
