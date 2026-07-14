@@ -99,34 +99,6 @@ chmod +x firefox-css.sh
 
 > **Note**: Firefox-pure is a pre-hardened Firefox build by the CachyOS team, optimized for Wayland with privacy/security defaults. It's not recommended to layer additional `user.js` configs (Betterfox, Arkenfox, etc.) on top. For standard Firefox, uninstall `firefox-pure` and install the regular package instead. Import my uBlock Origin settings from `ublock-backup.txt` and add your own regional filters.
 
-## Directory Structure
-
-```
-Kumin/
-├── home/                    ← stow target (-t ~)
-│   ├── .config/
-│   │   ├── niri/            ← WM config (split into .kdl modules)
-│   │   ├── waybar/          ← bar config + style.css
-│   │   ├── rofi/            ← launcher theme + config
-│   │   ├── foot/            ← terminal config
-│   │   ├── mako/            ← notification daemon
-│   │   ├── swaylock/        ← lock screen
-│   │   ├── swayidle/        ← idle management
-│   │   ├── fish/            ← shell config
-│   │   ├── tmux/            ← multiplexer config
-│   │   ├── fastfetch/       ← system fetch
-│   │   ├── gtk-3.0/         ← GTK CSS overrides
-│   │   └── xdg-desktop-portal/
-│   ├── .local/bin/          ← custom scripts (17 scripts)
-│   └── Pictures/Wallpapers/ ← wallpaper collection
-├── firefox/                 ← Firefox userChrome.css
-├── icons/                   ← GTK icon pack (tar.xz)
-├── themes/                  ← GTK theme (tar.xz)
-├── install.sh               ← fresh install script
-├── firefox-css.sh           ← Firefox CSS installer
-└── packages.txt             ← full package list
-```
-
 ## Keybinds
 
 All bindings use `Mod` (Super/Windows key) unless noted otherwise.
@@ -161,3 +133,10 @@ All bindings use `Mod` (Super/Windows key) unless noted otherwise.
 | `Mod+X`           | Power profiles                          |
 
 Media keys (volume, brightness, playback) are mapped to standard XF86 symbols.
+
+## Additional Configurations
+
+If you are looking to add more configurations or expand your setup, you can check out my other specific config repositories here:
+
+- [MPV](https://github.com/KabosuNeko/mpv-config)
+- [FireFox CSS](https://github.com/KabosuNeko/firefox-css)
