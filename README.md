@@ -130,3 +130,4 @@ If you are looking to add more configurations or expand your setup, you can chec
 
 - [MPV](https://github.com/KabosuNeko/mpv-config)
 - [FireFox CSS](https://github.com/KabosuNeko/firefox-css)
+- [Wallpapers](https://github.com/KabosuNeko/Wallpapers)
