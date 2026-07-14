@@ -37,6 +37,8 @@ Kumin is a Niri configuration for Arch-based distros. It is highly optimized (~9
 - **Icons**: [Gruvbox-Plus-Icon](https://www.gnome-look.org/p/1961046)
 - **Cursor**: [Bibata-Modern-Amber](https://www.gnome-look.org/p/1914819)
 
+> **Note**: Firefox-pure is a pre-hardened Firefox build by the CachyOS team, optimized for Wayland with privacy/security defaults. It's not recommended to layer additional `user.js` configs (Betterfox, Arkenfox, etc.) on top. For standard Firefox, uninstall `firefox-pure` and install the regular package instead.
+
 ## Features
 
 - **Dynamic accent color** — extracts the dominant color from your wallpaper via `colorthief` and propagates it across all UI surfaces (Waybar, Rofi, Foot, Mako, Swaylock, GTK) automatically
@@ -86,18 +88,6 @@ cd ~/Kumin && stow -D -t ~ home
 # Preview what would change:
 cd ~/Kumin && stow -n -t ~ home
 ```
-
-### Firefox Custom CSS
-
-Open Firefox at least once to generate a profile, then:
-
-```sh
-cd ~/Kumin
-chmod +x firefox-css.sh
-./firefox-css.sh
-```
-
-> **Note**: Firefox-pure is a pre-hardened Firefox build by the CachyOS team, optimized for Wayland with privacy/security defaults. It's not recommended to layer additional `user.js` configs (Betterfox, Arkenfox, etc.) on top. For standard Firefox, uninstall `firefox-pure` and install the regular package instead. Import my uBlock Origin settings from `ublock-backup.txt` and add your own regional filters.
 
 ## Keybinds
 
