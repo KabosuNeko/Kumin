@@ -80,7 +80,7 @@ The script is fully interactive — each phase prompts for confirmation:
 
 ```sh
 # Update after pulling changes:
-cd ~/Kumin && git pull && stow --restow -t ~ home
+cd ~/Kumin && git pull && stow --restow --no-folding -t ~ home
 
 # Uninstall (remove symlinks, your files are untouched):
 cd ~/Kumin && stow -D -t ~ home
