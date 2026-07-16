@@ -1,3 +1,4 @@
+gtk-engine-murrine
 networkmanager
 bluez
 bluez-utils

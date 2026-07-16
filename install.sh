@@ -146,56 +146,69 @@ else
 fi
 
 #-----------------------------------------------------------------------------
-# 8. Install icons & themes (extract from archives)
+# 8. Download & install icons from GitHub releases
 #-----------------------------------------------------------------------------
-install_archives() {
-    local source_dir="$1"
-    local dest_dir="$2"
-    local label="$3"
-
-    read -p "===> Install $label? (y/n): " confirm
-    if [[ $confirm != [yY] ]]; then
-        echo ":: Skipping $label installation."
-        return
-    fi
-
-    if [ ! -d "$source_dir" ]; then
-        echo "XXX [ERROR] $label directory not found: $source_dir" >&2
-        return
-    fi
-
-    shopt -s nullglob
-    local archives=("$source_dir"/*.tar.gz "$source_dir"/*.tar.xz)
-    if [ ${#archives[@]} -eq 0 ]; then
-        echo "!!! No archive files found in $source_dir"
-        shopt -u nullglob
-        return
-    fi
-
-    mkdir -p "$dest_dir"
-    for archive in "${archives[@]}"; do
-        local archive_name
-        archive_name=$(basename "$archive")
-        local base_name="${archive_name%.tar.gz}"
-        base_name="${base_name%.tar.xz}"
-
-        if [ -d "$dest_dir/$base_name" ]; then
-            echo ":: Skip $archive_name (already extracted: $dest_dir/$base_name)"
-            continue
-        fi
-
-        echo ":: Extracting $archive_name to $dest_dir..."
-        if tar -xf "$archive" -C "$dest_dir"; then
-            echo ":: Extracted $archive_name"
-        else
-            echo "XXX [ERROR] Failed to extract $archive_name" >&2
-        fi
-    done
-    shopt -u nullglob
+get_latest_asset_url() {
+    local repo="$1" pattern="$2"
+    curl -s "https://api.github.com/repos/$repo/releases/latest" | \
+        grep "browser_download_url" | \
+        grep -E "$pattern" | \
+        head -1 | \
+        cut -d'"' -f4
 }
 
-install_archives "$KUMIN_DIR/icons" "$HOME/.icons" "icons"
-install_archives "$KUMIN_DIR/themes" "$HOME/.themes" "themes"
+install_icon_release() {
+    local repo="$1" pattern="$2" dest="$3" label="$4"
+    read -p "===> Install $label? (y/n): " confirm
+    [[ $confirm != [yY] ]] && { echo ":: Skipping $label."; return; }
+
+    local url
+    url=$(get_latest_asset_url "$repo" "$pattern")
+    if [[ -z "$url" ]]; then
+        echo "XXX [ERROR] Could not find download asset for $label" >&2
+        return
+    fi
+
+    local tmpdir
+    tmpdir=$(mktemp -d)
+    local filename
+    filename=$(basename "$url")
+
+    echo ":: Downloading $label from $repo..."
+    curl -L -o "$tmpdir/$filename" "$url"
+
+    mkdir -p "$dest"
+    case "$filename" in
+        *.zip)     unzip -qo "$tmpdir/$filename" -d "$tmpdir/extracted" ;;
+        *.tar.xz)  tar -xf "$tmpdir/$filename" -C "$tmpdir/extracted" ;;
+        *.tar.gz)  tar -xzf "$tmpdir/$filename" -C "$tmpdir/extracted" ;;
+    esac
+
+    for item in "$tmpdir/extracted"/*/; do
+        local name
+        name=$(basename "$item")
+        if [ -d "$dest/$name" ]; then
+            echo ":: Skip $name (already exists in $dest)"
+        else
+            cp -r "$item" "$dest/"
+            echo ":: Installed $name to $dest"
+        fi
+    done
+
+    rm -rf "$tmpdir"
+}
+
+install_icon_release \
+    "SylEleuth/gruvbox-plus-icon-pack" \
+    "gruvbox-plus-icon-pack-.*\.zip" \
+    "$HOME/.icons" \
+    "Gruvbox Plus Icons"
+
+install_icon_release \
+    "ful1e5/Bibata_Cursor" \
+    "Bibata-Modern-Amber\.tar\.xz" \
+    "$HOME/.icons" \
+    "Bibata Modern Amber Cursor"
 
 #-----------------------------------------------------------------------------
 # 9. Apply GTK settings
