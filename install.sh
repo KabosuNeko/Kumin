@@ -138,6 +138,7 @@ if [[ $confirm == [yY] ]]; then
     elif [ ! -d "$WALLPAPER_DIR" ] || [ -z "$(ls -A "$WALLPAPER_DIR" 2>/dev/null)" ]; then
         echo ":: Cloning from https://github.com/KabosuNeko/Wallpapers.git..."
         git clone --depth 1 https://github.com/KabosuNeko/Wallpapers.git "$WALLPAPER_DIR"
+        rm -rf "$WALLPAPER_DIR/.git" "$WALLPAPER_DIR/README.md"
     else
         echo ":: Directory $WALLPAPER_DIR already exists and is not empty. Skipping clone."
     fi
