@@ -91,13 +91,6 @@ bright4=$(printf '%s' "$ACCENT_COLOR" | cut -c2-)
 regular5=$(printf '%s' "$ACCENT_COLOR" | cut -c2-)
 bright5=$(printf '%s' "$ACCENT_COLOR" | cut -c2-)"
 
-write_file "base.css" "/* Generated - do not edit */
-@define-color bg_overlay rgba(18, 18, 22, 0.75);
-@define-color bg_surface rgba(255, 255, 255, 0.05);
-@define-color bg_divider rgba(255, 255, 255, 0.1);
-@define-color fg_primary #e0e0e0;
-@define-color fg_muted rgba(224, 224, 224, 0.5);"
-
 echo "Generated theme state in: $STATE_DIR"
 
 # ===== Apply phase =====
@@ -116,10 +109,6 @@ if command -v makoctl >/dev/null 2>&1; then
     makoctl reload 2>/dev/null || true
 fi
 
-ACCENT=$(sed -nE 's/^\s*@define-color\s+accent_color\s+(#[0-9a-fA-F]{6}).*$/\1/p' "$STATE_DIR/colors.css" 2>/dev/null || true)
-if [ -n "$ACCENT" ]; then
-    sed -i "1s/.*/@define-color accent_color $ACCENT;/" "$HOME/.config/waybar/style.css"
-fi
 pkill -SIGUSR2 waybar 2>/dev/null || true
 pkill -USR1 foot 2>/dev/null || true
 

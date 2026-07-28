@@ -6,36 +6,12 @@ STYLE="$HOME/.local/bin/kumin-style.sh"
 
 mkdir -p "$STATE_DIR"
 
-get_current_accent() {
-    accent="#ffffff"
-    if [ -f "$STATE_DIR/colors.css" ]; then
-        parsed=$(sed -nE 's/^\s*@define-color\s+accent_color\s+(#[0-9a-fA-F]{6})\s*;.*$/\1/p' "$STATE_DIR/colors.css" | head -n1)
-        [ -n "${parsed:-}" ] && accent="$parsed"
-    fi
-    printf '%s\n' "$accent"
-}
-
-get_current_size() {
-    size="16"
-    if [ -f "$STATE_DIR/fonts.css" ]; then
-        parsed=$(sed -nE 's/^\s*font-size:\s*([0-9]+)px\s*;.*$/\1/p' "$STATE_DIR/fonts.css" | head -n1)
-        [ -n "${parsed:-}" ] && size="$parsed"
-    fi
-    printf '%s\n' "$size"
-}
-
-get_current_font() {
-    font="monospace"
-    if [ -f "$STATE_DIR/fonts.css" ]; then
-        parsed=$(sed -nE 's/^\s*font-family:\s*"([^"]+)".*$/\1/p' "$STATE_DIR/fonts.css" | head -n1)
-        [ -n "${parsed:-}" ] && font="$parsed"
-    fi
-    printf '%s\n' "$font"
-}
-
-ACCENT=$(get_current_accent)
-FONT_FAMILY=$(get_current_font)
-FONT_SIZE=$(get_current_size)
+ACCENT=$(sed -nE 's/^\s*@define-color\s+accent_color\s+(#[0-9a-fA-F]{6})\s*;.*$/\1/p' "$STATE_DIR/colors.css" 2>/dev/null)
+ACCENT="${ACCENT:-#ffffff}"
+FONT_FAMILY=$(sed -nE 's/^\s*font-family:\s*"([^"]+)".*$/\1/p' "$STATE_DIR/fonts.css" 2>/dev/null)
+FONT_FAMILY="${FONT_FAMILY:-monospace}"
+FONT_SIZE=$(sed -nE 's/^\s*font-size:\s*([0-9]+)px\s*;.*$/\1/p' "$STATE_DIR/fonts.css" 2>/dev/null)
+FONT_SIZE="${FONT_SIZE:-16}"
 
 choice=$(cat <<EOF | rofi -dmenu -p "Change Theme - Choose an option:" -i
   Change font

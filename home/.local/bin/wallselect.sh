@@ -33,21 +33,14 @@ if [ -n "$CHOICE" ]; then
 from colorthief import ColorThief
 import sys
 
-def brightness(c):
-    return sum(v*v for v in c)
-
 colors = ColorThief(sys.argv[1]).get_palette(color_count=5)
-brightest = max(colors, key=brightness)
-print("#%02x%02x%02x" % brightest)
+brightest = max(colors, key=lambda c: sum(v*v for v in c))
+if sum(brightest) < 180:
+    print("#ffffff")
+else:
+    print("#%02x%02x%02x" % tuple(brightest))
 ' "$WALL"
     )
-
-    r=$(printf "%d" 0x"$(printf '%s' "$ACCENT" | cut -c2-3)")
-    g=$(printf "%d" 0x"$(printf '%s' "$ACCENT" | cut -c4-5)")
-    b=$(printf "%d" 0x"$(printf '%s' "$ACCENT" | cut -c6-7)")
-    if [ $((r + g + b)) -lt 180 ]; then
-        ACCENT="#ffffff"
-    fi
 
     ~/.local/bin/kumin-style.sh "$ACCENT"
 fi
