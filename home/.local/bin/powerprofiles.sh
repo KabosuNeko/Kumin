@@ -1,12 +1,11 @@
-#!/bin/bash
-
-set -euo pipefail
+#!/bin/sh
+set -eu
 
 option_perf="󰓅  Performance"
 option_bal="󰾆  Balanced"
 option_save="  Power-saver"
 
-chosen=$(echo -e "$option_perf\n$option_bal\n$option_save" | rofi -dmenu -i -p "Power Profile")
+chosen=$(printf '%s\n' "$option_perf" "$option_bal" "$option_save" | rofi -dmenu -i -p "Power Profile")
 
 case "$chosen" in
     "$option_perf")

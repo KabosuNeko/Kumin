@@ -1,12 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
-if ! command -v wl-screenrec &> /dev/null; then
+if ! command -v wl-screenrec > /dev/null 2>&1; then
     notify-send -u critical "Recording System" "Error: wl-screenrec is not installed." -i dialog-error
     exit 1
 fi
 
 PID_FILE="${XDG_RUNTIME_DIR:-/tmp}/kumin_recording.pid"
-TIME_FILE="${XDG_RUNTIME_DIR:-/tmp}/kumin_recording_time"
 
 SAVE_DIR="$HOME/Videos"
 mkdir -p "$SAVE_DIR"
@@ -16,17 +15,16 @@ REC_OPTS="--max-fps 60"
 stop_recording() {
     if [ -f "$PID_FILE" ]; then
         PID=$(cat "$PID_FILE")
-        kill -SIGINT "$PID"
-        while ps -p $PID > /dev/null; do sleep 0.1; done
+        kill -INT "$PID"
+        while kill -0 "$PID" 2>/dev/null; do sleep 0.1; done
         rm -f "$PID_FILE"
-        rm -f "$TIME_FILE"
         notify-send -u normal "Recording System" "Saved Video" -i video-display
     fi
 }
 
 start_recording() {
     options="󰑊 Only Sound\n󰍬 Micro and Sound\n󰔊 No Sound"
-    chosen=$(echo -e "$options" | rofi -dmenu -i -p "Select Mode:" \
+    chosen=$(printf '%b' "$options" | rofi -dmenu -i -p "Select Mode:" \
         -theme-str "window { width: 35%; }")
 
     if [ -z "$chosen" ]; then
@@ -42,8 +40,6 @@ start_recording() {
             MSG="Recording: System Audio"
             ;;
         *"Micro and Sound")
-            # Record audio from the default device (usually the microphone).
-            # If you want to mix both game audio + mic, you need to set up loopback on Pipewire.
             wl-screenrec $REC_OPTS --audio -f "$FILEPATH" &
             MSG="Recording: Microphone/Default"
             ;;
@@ -56,16 +52,11 @@ start_recording() {
     echo $! > "$PID_FILE"
     notify-send "Recording System" "$MSG" -i video-display
 
-    SEC=0
-    while [ -f "$PID_FILE" ] && ps -p $(cat "$PID_FILE") > /dev/null; do
-        MIN=$((SEC / 60))
-        S=$((SEC % 60))
-        printf "%02d:%02d" $MIN $S > "$TIME_FILE"
+    while [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; do
         sleep 1
-        SEC=$((SEC + 1))
     done
 
-    rm -f "$PID_FILE" "$TIME_FILE"
+    rm -f "$PID_FILE"
 }
 
 if [ -f "$PID_FILE" ]; then

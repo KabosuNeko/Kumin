@@ -1,9 +1,9 @@
-#!/bin/bash
-set -euo pipefail
+#!/bin/sh
+set -eu
 
-spawn() { ( "$@" & ) >/dev/null 2>&1; disown; }
+spawn() { ( "$@" & ) >/dev/null 2>&1; }
 
-if [[ $# -eq 0 ]]; then
+if [ $# -eq 0 ]; then
   cat <<'EOF'
 󰚥  Power Profiles
 󰇧  Browser

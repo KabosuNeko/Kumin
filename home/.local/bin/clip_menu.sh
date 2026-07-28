@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 if [ "$1" = "--wipe" ]; then
     cliphist wipe
@@ -16,7 +16,7 @@ result=$(cliphist list | rofi -dmenu \
     -theme-str "window { width: 50%; } \
                 listview { lines: 10; }")
 
-if [ ! -z "$result" ]; then
+if [ -n "$result" ]; then
     echo "$result" | cliphist decode | wl-copy
     notify-send "Clipboard" "Copied" -t 2000
 fi

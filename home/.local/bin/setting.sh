@@ -1,8 +1,9 @@
-#!/bin/bash
-set -euo pipefail
-spawn() { ( "$@" & ) >/dev/null 2>&1; disown; }
+#!/bin/sh
+set -eu
 
-if [[ $# -eq 0 ]]; then
+spawn() { ( "$@" & ) >/dev/null 2>&1; }
+
+if [ $# -eq 0 ]; then
     cat <<'EOF'
 󰖩  Wifi
 󰂯  Bluetooth
@@ -21,5 +22,3 @@ case "$chosen" in
     *"Storage Manager"*) spawn foot --app-id=ncdu -e sudo ncdu / ;;
     *"Audio Control"*) spawn foot -e pulsemixer ;;
 esac
-
-exit 0
