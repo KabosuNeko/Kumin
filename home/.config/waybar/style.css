@@ -1,4 +1,4 @@
-@define-color accent_color #ffffff;
+@import url("../../.local/state/kumin_theme/colors.css");
 @import url("../../.local/state/kumin_theme/fonts.css");
 
 * {
