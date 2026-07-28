@@ -21,6 +21,7 @@ if command -v makoctl >/dev/null 2>&1; then
     makoctl reload || true
 fi
 
+pkill -SIGUSR2 waybar
 pkill -USR1 foot >/dev/null 2>&1 || true
 
 SWAYLOCK_CONFIG="$HOME/.config/swaylock/config"
