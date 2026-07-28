@@ -77,7 +77,6 @@ FOLDERS=(
     "$HOME/.icons"
     "$HOME/.themes"
     "$HOME/Pictures/Screenshots"
-    "$HOME/Videos/Wallpapers/Preview"
 )
 
 for folder in "${FOLDERS[@]}"; do
@@ -179,6 +178,7 @@ install_icon_release() {
     curl -L -o "$tmpdir/$filename" "$url"
 
     mkdir -p "$dest"
+    mkdir -p "$tmpdir/extracted"
     case "$filename" in
         *.zip)     unzip -qo "$tmpdir/$filename" -d "$tmpdir/extracted" ;;
         *.tar.xz)  tar -xf "$tmpdir/$filename" -C "$tmpdir/extracted" ;;

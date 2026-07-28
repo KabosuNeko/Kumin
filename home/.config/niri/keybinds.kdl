@@ -16,7 +16,6 @@ binds {
     Mod+F11 hotkey-overlay-title="Record Screen" { spawn "sh" "-c" "~/.local/bin/record.sh"; }
     Mod+Tab hotkey-overlay-title="Kumin Menu" { spawn "sh" "-c" "~/.local/bin/kuminmenu.sh"; }
     Alt+W hotkey-overlay-title="Wallpaper Select" { spawn "sh" "-c" "~/.local/bin/wallselect.sh"; }
-    Alt+Shift+W hotkey-overlay-title="Lively Wallpaper Select" { spawn "sh" "-c" "~/.local/bin/wallmpvselect.sh"; }
     Mod+Shift+P hotkey-overlay-title="Power Menu" { spawn "sh" "-c" "~/.local/bin/shutdown.sh"; }
     Alt+P hotkey-overlay-title="Repos" { spawn "sh" "-c" "~/.local/bin/repos-rofi.sh"; }
     Alt+T hotkey-overlay-title="Tmux" { spawn "sh" "-c" "~/.local/bin/tmux-rofi.sh"; }

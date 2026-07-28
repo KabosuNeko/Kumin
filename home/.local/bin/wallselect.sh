@@ -12,16 +12,8 @@ list_walls() {
 
 set_wallpaper() {
     local wall="$1"
-    awww img "$wall" \
-        --transition-type random \
-        --transition-step 90 \
-        --transition-fps 60
-
-    if pgrep -x "niri" > /dev/null; then
-        mkdir -p "$WALL_DIR/temp"
-        magick "$wall" -blur 0x15 "$WALL_DIR/temp/backdrop.jpg"
-        awww img -n "awww-daemon-backdrop" "$WALL_DIR/temp/backdrop.jpg"
-    fi
+    pkill swaybg 2>/dev/null || true
+    swaybg -i "$wall" -m fill &
 }
 
 CHOICE=$(list_walls | rofi -dmenu -i -p "Wallpaper" \
@@ -34,10 +26,6 @@ CHOICE=$(list_walls | rofi -dmenu -i -p "Wallpaper" \
 
 if [ -n "$CHOICE" ]; then
     WALL="$WALL_DIR/$CHOICE"
-
-    if pgrep -x "mpvpaper" > /dev/null; then
-        pkill mpvpaper
-    fi
 
     set_wallpaper "$WALL"
 

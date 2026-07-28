@@ -27,7 +27,7 @@ Kumin is a Niri configuration for Arch-based distros. It is highly optimized (~9
 | Notifications   | [Mako](https://github.com/emersion/mako)                                              |
 | Lock Screen     | [Swaylock-effects](https://github.com/jirutka/swaylock-effects)                       |
 | Idle Daemon     | [Swayidle](https://github.com/swaywm/swayidle)                                        |
-| Wallpaper       | [Awww](https://github.com/GhostNaN/awww) / [mpvpaper](https://github.com/GhostNaN/mpvpaper) |
+| Wallpaper       | [Swaybg](https://github.com/swaywm/swaybg) |
 | System Fetch    | [Fastfetch](https://github.com/fastfetch-cli/fastfetch)                               |
 | Power Profiles  | [power-profiles-daemon](https://gitlab.freedesktop.org/upower/power-profiles-daemon)  |
 | Display Manager | [Ly](https://github.com/fairyglade/ly)                                                |

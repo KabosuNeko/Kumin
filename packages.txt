@@ -6,7 +6,7 @@ waybar
 rofi
 mako
 foot
-awww
+swaybg
 ly
 uwsm
 socat
@@ -50,6 +50,8 @@ qt5-wayland
 qt6-wayland
 chafa
 imagemagick
+gruvbox-gtk-theme-git
+gtk-engine-murrine
 python-colorthief
 niri
 swayidle
@@ -58,8 +60,6 @@ neovim
 tmux
 wlsunset
 xdg-desktop-portal-gnome
-localsend
 firefox-pure
-mpvpaper
 wl-screenrec-git
 sway-audio-idle-inhibit-git

@@ -57,11 +57,6 @@ window-rule {
 }
 
 layer-rule {
-    match namespace="awww-daemon-backdrop"
-    place-within-backdrop true
-}
-
-layer-rule {
     match namespace="^waybar$"
     match namespace="^rofi$"
     match namespace="^mako$"

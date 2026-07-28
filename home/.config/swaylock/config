@@ -1,5 +1,3 @@
-include=~/.local/state/kumin_theme/mako-style.conf
-
 ignore-empty-password
 
 font=JetBrainsMono Nerd Font
