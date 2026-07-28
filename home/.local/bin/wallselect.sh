@@ -49,8 +49,5 @@ print("#%02x%02x%02x" % brightest)
         ACCENT="#ffffff"
     fi
 
-    ~/.local/bin/gen-style.sh "$ACCENT"
-
-    sleep 0.1
-    ~/.local/bin/apply-style.sh
+    ~/.local/bin/kumin-style.sh "$ACCENT"
 fi

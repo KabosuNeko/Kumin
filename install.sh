@@ -228,10 +228,9 @@ if command -v xdg-mime > /dev/null 2>&1 && command -v thunar > /dev/null 2>&1; t
     echo ":: Default file manager: thunar"
 fi
 
-if [ -x "$HOME/.local/bin/gen-style.sh" ]; then
+if [ -x "$HOME/.local/bin/kumin-style.sh" ]; then
     echo ":: Generating initial theme state..."
-    "$HOME/.local/bin/gen-style.sh"
-    "$HOME/.local/bin/apply-style.sh"
+    "$HOME/.local/bin/kumin-style.sh"
 fi
 
 echo ""

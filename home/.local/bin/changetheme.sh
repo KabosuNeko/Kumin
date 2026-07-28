@@ -2,8 +2,7 @@
 set -eu
 
 STATE_DIR="$HOME/.local/state/kumin_theme"
-GEN="$HOME/.local/bin/gen-style.sh"
-APPLY="$HOME/.local/bin/apply-style.sh"
+STYLE="$HOME/.local/bin/kumin-style.sh"
 
 mkdir -p "$STATE_DIR"
 
@@ -98,5 +97,4 @@ EOF
         ;;
 esac
 
-"$GEN" "$ACCENT" "$FONT_FAMILY" "$FONT_SIZE"
-"$APPLY"
+"$STYLE" "$ACCENT" "$FONT_FAMILY" "$FONT_SIZE"
