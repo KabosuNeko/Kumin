@@ -16,6 +16,7 @@ pavucontrol
 wl-clipboard
 cliphist
 ncdu
+jq
 wget
 thunar
 thunar-archive-plugin

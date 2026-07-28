@@ -2,7 +2,7 @@
 set -eu
 
 KUMIN_DIR="$(cd "$(dirname "$0")" && pwd)"
-PKG_FILE="$KUMIN_DIR/packages.txt"
+PKG_FILE="$KUMIN_DIR/pkg.txt"
 
 sudo -v
 
@@ -49,7 +49,7 @@ for pkg in stow git curl; do
     fi
 done
 
-printf "===> Install packages from packages.txt? (y/n): "
+printf "===> Install packages from pkg.txt? (y/n): "
 read -r confirm
 if [ "$confirm" = y ] || [ "$confirm" = Y ]; then
     yay -S --noconfirm - < "$PKG_FILE"

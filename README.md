@@ -68,7 +68,7 @@ The script is fully interactive — each phase prompts for confirmation:
 
 1. Installs `yay` (AUR helper) if needed
 2. Ensures `stow`, `git`, and `curl` are available
-3. Installs all packages from `packages.txt`
+3. Installs all packages from `pkg.txt`
 4. Creates required directories
 5. Deploys dotfiles via **GNU Stow** (symlinks to `~/.config`, `~/.local/bin`, `~/Pictures/Wallpapers`)
 6. Installs Fish shell (optional, with confirmation for default shell)
