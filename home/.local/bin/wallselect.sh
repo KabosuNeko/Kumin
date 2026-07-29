@@ -27,6 +27,7 @@ CHOICE=$(list_walls | rofi -dmenu -i -p "Wallpaper" \
 if [ -n "$CHOICE" ]; then
     WALL="$WALL_DIR/$CHOICE"
     set_wallpaper "$WALL"
+    printf '%s' "$WALL" > "$HOME/.local/state/kumin_theme/wallpaper"
 
     ACCENT=$(
         python3 -c '
