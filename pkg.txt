@@ -45,6 +45,8 @@ qt6ct
 qt5-wayland
 qt6-wayland
 gruvbox-gtk-theme-git
+gruvbox-plus-icon-theme
+bibata-cursor-theme
 gtk-engine-murrine
 python-colorthief
 niri
