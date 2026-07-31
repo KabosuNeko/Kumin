@@ -14,7 +14,8 @@ Kumin is a Niri configuration for Arch-based distros. It is highly optimized (~9
 
 | <img width="1920" height="1080" alt="screenshot_1" src="https://github.com/user-attachments/assets/7cbe867f-f2a7-446d-b5ba-3d47307dfebb" /> | <img width="1920" height="1080" alt="screenshot_2" src="https://github.com/user-attachments/assets/bbd942b4-3582-4a15-a6e3-9727f965456a" /> |
 |---|---|
-| <img width="1920" height="1080" alt="screenshot_3" src="https://github.com/user-attachments/assets/1472d4a5-90df-47b2-b860-808c65e74fa0" /> | <img width="1920" height="1080" alt="screenshot_4" src="https://github.com/user-attachments/assets/9d873dd0-490b-4821-a595-1fe7b249b905" /> |
+| <img width="1920" height="1080" alt="screenshot_3" src="https://github.com/user-attachments/assets/1472d4a5-90df-47b2-b860-808c65e74fa0" /> | <img width="1920" height="1080" alt="screenshot_4" src="https://github.com/user-attachments/assets/b3a943df-f381-4d4c-9552-97f2358b94e5" /> |
+
 
 ## Core Components
 
