@@ -132,3 +132,4 @@ If you are looking to add more configurations or expand your setup, you can chec
 - [MPV](https://github.com/KabosuNeko/mpv-config)
 - [FireFox Config](https://github.com/KabosuNeko/YuzuFox/)
 - [Wallpapers](https://github.com/KabosuNeko/Wallpapers)
+- [Nvim](https://github.com/KabosuNeko/nvim)
