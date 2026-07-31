@@ -123,7 +123,7 @@ if command -v gsettings > /dev/null 2>&1; then
     read -r confirm
     if [ "$confirm" = y ] || [ "$confirm" = Y ]; then
         gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
-        gsettings set org.gnome.desktop.interface gtk-theme "Gruvbox-BL-LB-Dark"
+        gsettings set org.gnome.desktop.interface gtk-theme "Gruvbox-Orange-Dark"
         gsettings set org.gnome.desktop.interface icon-theme "Gruvbox-Plus-Dark"
         gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Amber"
         echo ":: GTK settings applied."
