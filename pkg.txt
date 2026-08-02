@@ -57,5 +57,5 @@ tmux
 wlsunset
 xdg-desktop-portal-gnome
 firefox-pure
-wl-screenrec-git
+wl-screenrec
 sway-audio-idle-inhibit-git
