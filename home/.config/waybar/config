@@ -1,82 +1,97 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 24,
+  "height": 28,
 
-  "margin-top": 0,
-  "margin-left": 450,
-  "margin-right": 450,
+  "margin-top": 6,
+  "margin-left": 550,
+  "margin-right": 550,
   "margin-bottom": 0,
+
+  "spacing": 2,
 
   "reload_style_on_change": true,
 
-  "modules-left": ["niri/window"],
-  "modules-center": ["clock"],
-  "modules-right": ["custom/weather", "backlight", "pulseaudio", "battery", "tray"],
+  "modules-left": [
+    "custom/menu",
+    "clock"
+  ],
+  "modules-center": [
+    "niri/workspaces"
+  ],
+  "modules-right": [
+    "custom/weather",
+    "pulseaudio",
+    "battery",
+    "network",
+    "tray"
+  ],
 
-  "niri/window": {
-    "format": "{title}  ",
-    "max-length": 45,
-    "separate-outputs": false
+  "custom/menu": {
+    "format": "󰹢",
+    "on-click": "kuminmenu.sh",
+    "tooltip-format": "Kumin Menu (Mod+Tab)"
   },
 
-  "tray": {
-    "icon-size": 14,
-    "spacing": 8
+  "clock": {
+    "format": "{:%a, %b %d  %H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "default": "•"
+    }
+  },
+
+  "custom/weather": {
+    "format": "󰖐 {}",
+    "tooltip-format": "Weather: {}C",
+    "exec": "curl -s 'wttr.in/?format=%t' 2>/dev/null | tr -d '+C'",
+    "interval": 900
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 {volume}%",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "on-click": "pavucontrol"
   },
 
   "battery": {
     "interval": 10,
     "states": {
-        "warning": 30,
-        "critical": 15
+      "warning": 30,
+      "critical": 15
     },
     "format": "{icon} {capacity}%",
     "format-charging": "󰂄 {capacity}%",
-    "format-plugged": "󰚥 {capacity}%",
     "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "tooltip": true
   },
 
-  "backlight": {
-    "format": "{icon} {percent}%",
-    "format-icons": ["󱩌", "󱉕", "󱉓"],
-    "tooltip": true,
-    "on-scroll-up": "brightnessctl set 5%+",
-    "on-scroll-down": "brightnessctl set 5%-"
+  "network": {
+    "format-wifi": "󰖩",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰖪",
+    "tooltip-format": "{essid} ({signalStrength}%)",
+    "on-click": "foot -e nmtui"
   },
 
-  "custom/weather": {
-    "format": " 󰖐 {} ",
-    "exec": "curl -s 'wttr.in/?format=%t' 2>/dev/null",
-    "interval": 900
-  },
-
-  "pulseaudio": {
-    "format": "  {volume}% ",
-    "on-click": "pavucontrol"
-  },
-
-  "clock": {
-    "format": " {:%a, %b %d | %I:%M%p} ",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "calendar": {
-      "mode"          : "month",
-      "mode-mon-col"  : 3,
-      "weeks-pos"     : "right",
-      "on-scroll"     : 1,
-      "format": {
-        "months":     "<b>{}</b>",
-        "days":       "<b>{}</b>",
-        "weeks":      "<b>W{}</b>",
-        "weekdays":   "<b>{}</b>",
-        "today":      "<b><u>{}</u></b>"
-      }
-    },
-    "actions":  {
-      "on-click-right": "mode",
-      "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down"
-    }
-  },
+  "tray": {
+    "icon-size": 13,
+    "spacing": 6
+  }
 }

@@ -1,6 +1,6 @@
 ignore-empty-password
 
-font=JetBrainsMono Nerd Font
+font=monospace 16
 clock
 timestr=%H:%M
 datestr=%a, %d/%m/%Y

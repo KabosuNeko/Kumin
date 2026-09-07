@@ -1,0 +1,184 @@
+{
+  "layer": "top",
+  "position": "left",
+  "width": 26,
+
+  "margin-top": 100,
+  "margin-left": 6,
+  "margin-right": 0,
+  "margin-bottom": 100,
+
+  "spacing": 0,
+
+  "reload_style_on_change": true,
+
+  "modules-left": [
+    "custom/menu",
+    "custom/cpu-icon",
+    "cpu",
+    "custom/ram-icon",
+    "memory",
+    "battery#icon",
+    "battery#val",
+    "pulseaudio#icon",
+    "pulseaudio#val",
+    "backlight#icon",
+    "backlight#val"
+  ],
+  "modules-center": [
+    "niri/workspaces"
+  ],
+  "modules-right": [
+    "custom/weather-icon",
+    "custom/weather",
+    "network",
+    "tray",
+    "clock#time"
+  ],
+
+  "custom/menu": {
+    "format": "󰹢",
+    "on-click": "kuminmenu.sh",
+    "tooltip-format": "Kumin Menu (Mod+Tab)"
+  },
+
+  "custom/cpu-icon": {
+    "format": "",
+    "tooltip": false
+  },
+  "cpu": {
+    "interval": 2,
+    "format": "{usage}%",
+    "tooltip": true
+  },
+
+  "custom/ram-icon": {
+    "format": "",
+    "tooltip": false
+  },
+  "memory": {
+    "interval": 2,
+    "format": "{percentage}%",
+    "tooltip": true
+  },
+
+  "battery#icon": {
+    "interval": 10,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon}",
+    "format-charging": "󰂄",
+    "format-plugged": "󰚥",
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "tooltip": false
+  },
+  "battery#val": {
+    "interval": 10,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}%",
+    "tooltip": true
+  },
+
+  "pulseaudio#icon": {
+    "format": "{icon}",
+    "format-muted": "󰝟",
+    "format-icons": {
+      "default": ["", ""]
+    },
+    "on-click": "pavucontrol",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ || pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- || pactl set-sink-volume @DEFAULT_SINK@ -5%",
+    "tooltip-format": "Volume: {volume}%"
+  },
+  "pulseaudio#val": {
+    "format": "{volume}%",
+    "format-muted": "0%",
+    "on-click": "pavucontrol",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ || pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- || pactl set-sink-volume @DEFAULT_SINK@ -5%",
+    "tooltip-format": "Volume: {volume}%"
+  },
+
+  "backlight#icon": {
+    "format": "{icon}",
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
+    "tooltip-format": "Brightness: {percent}%",
+    "on-scroll-up": "brightnessctl set 5%+",
+    "on-scroll-down": "brightnessctl set 5%-"
+  },
+  "backlight#val": {
+    "format": "{percent}%",
+    "tooltip-format": "Brightness: {percent}%",
+    "on-scroll-up": "brightnessctl set 5%+",
+    "on-scroll-down": "brightnessctl set 5%-"
+  },
+
+  "custom/weather-icon": {
+    "format": "󰖐",
+    "tooltip": false
+  },
+  "custom/weather": {
+    "format": "{}",
+    "tooltip-format": "Weather: {}C",
+    "exec": "curl -s 'wttr.in/?format=%t' 2>/dev/null | tr -d '+C'",
+    "interval": 900
+  },
+
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "default": "•"
+    }
+  },
+
+  "network": {
+    "format-wifi": "󰖩",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰖪",
+    "tooltip-format": "{essid} ({signalStrength}%)"
+  },
+
+  "tray": {
+    "icon-size": 13,
+    "spacing": 6
+  },
+
+  "clock#time": {
+    "interval": 1,
+    "format": "{:%H\n%M}",
+    "format-alt": "{:%I\n%M}",
+    "tooltip-format": "<big>{:%A, %B %d, %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<b>{}</b>",
+        "days": "<b>{}</b>",
+        "weeks": "<b>W{}</b>",
+        "weekdays": "<b>{}</b>",
+        "today": "<b><u>{}</u></b>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  }
+}

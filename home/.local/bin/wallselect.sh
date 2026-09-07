@@ -32,16 +32,45 @@ if [ -n "$CHOICE" ]; then
     ACCENT=$(
         python3 -c '
 from colorthief import ColorThief
+import colorsys
 import sys
 
-colors = ColorThief(sys.argv[1]).get_palette(color_count=5)
-brightest = max(colors, key=lambda c: sum(v*v for v in c))
-if sum(brightest) < 180:
-    print("#ffffff")
-else:
-    print("#%02x%02x%02x" % tuple(brightest))
+def pick_accent(wall):
+    ct = ColorThief(wall)
+    palette = ct.get_palette(color_count=9)
+    scored = []
+    for rgb in palette:
+        r, g, b = [x / 255.0 for x in rgb]
+        h, s, v = colorsys.rgb_to_hsv(r, g, b)
+        
+        # Penalize colors that are too dark for dark-themed UI
+        v_factor = 1.0 if v >= 0.55 else (v / 0.55) ** 2
+        # Prefer saturated, distinct colors over washed out grey/white
+        s_factor = s if s >= 0.15 else (s / 0.15 * 0.3)
+        score = s_factor * 1.5 + v * v_factor
+        scored.append((score, s, v, rgb))
+        
+    scored.sort(key=lambda x: x[0], reverse=True)
+    best_score, s, v, best_rgb = scored[0]
+    
+    # If the wallpaper is completely black & white / monochrome
+    if s < 0.10:
+        brightest = max(palette, key=lambda c: sum(c))
+        return "#%02x%02x%02x" % tuple(brightest)
+        
+    # Ensure minimum luminance for dark background contrast
+    r, g, b = [x / 255.0 for x in best_rgb]
+    h, s, v = colorsys.rgb_to_hsv(r, g, b)
+    if v < 0.65:
+        v = 0.75
+        r, g, b = colorsys.hsv_to_rgb(h, s, v)
+        best_rgb = (int(r * 255), int(g * 255), int(b * 255))
+        
+    return "#%02x%02x%02x" % tuple(best_rgb)
+
+print(pick_accent(sys.argv[1]))
 ' "$WALL"
     )
 
-    ~/.local/bin/kumin-style.sh "$ACCENT"
+    ~/.local/bin/kumin-theme.sh --accent "$ACCENT"
 fi

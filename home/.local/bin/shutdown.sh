@@ -14,7 +14,7 @@ sleep_system() {
 }
 
 exit_wm() {
-    pkill niri
+    niri msg action quit --skip-confirmation 2>/dev/null || pkill niri
 }
 
 execute_action() {

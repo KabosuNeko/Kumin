@@ -8,7 +8,6 @@
 //=============================================================================
 
 environment {
-    DISPLAY ":0"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
     XDG_SESSION_TYPE "wayland"
     XDG_CURRENT_DESKTOP "niri"
@@ -30,13 +29,14 @@ environment {
     // Java Applications
     _JAVA_AWT_WM_NONREPARENTING "1"
 
-    // SDL Applications
+    // SDL & Clutter
     SDL_VIDEODRIVER "wayland"
-
-    // CLUTTER Applications
     CLUTTER_BACKEND "wayland"
 
-    // Performance
-    VDPAU_DRIVER "va_gl"
-    LIBVA_DRIVER_NAME "iHD"
+    // Input Method (Fcitx5)
+    GTK_IM_MODULE "fcitx"
+    QT_IM_MODULE "fcitx"
+    XMODIFIERS "@im=fcitx"
+    SDL_IM_MODULE "fcitx"
+    GLFW_IM_MODULE "ibus"
 }

@@ -15,7 +15,7 @@ spawn-at-startup "swayidle"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
 spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
 spawn-at-startup "sway-audio-idle-inhibit"
-spawn-at-startup "waybar"
+spawn-at-startup "sh" "-c" "~/.local/bin/kumin-bar.sh"
 
 // Restore wallpaper
 spawn-at-startup "sh" "-c" "wall=$(cat ~/.local/state/kumin_theme/wallpaper 2>/dev/null) && [ -n \"$wall\" ] && swaybg -i \"$wall\" -m fill &"

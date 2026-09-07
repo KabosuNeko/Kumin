@@ -38,7 +38,7 @@ for pkg in stow git curl; do
         echo ":: $pkg ... found"
     else
         echo "XXX [MISSING] $pkg"
-        printf "===> Install $pkg now? (y/n): "
+        printf "===> Install %s now? (y/n): " "$pkg"
         read -r confirm
         if [ "$confirm" = y ] || [ "$confirm" = Y ]; then
             yay -S --noconfirm "$pkg"
@@ -52,7 +52,7 @@ done
 printf "===> Install packages from pkg.txt? (y/n): "
 read -r confirm
 if [ "$confirm" = y ] || [ "$confirm" = Y ]; then
-    yay -S --noconfirm - < "$PKG_FILE"
+    yay -Syu --noconfirm - < "$PKG_FILE"
 else
     echo ":: Skipping package installation."
 fi
@@ -164,9 +164,9 @@ if command -v xdg-mime > /dev/null 2>&1 && command -v thunar > /dev/null 2>&1; t
     echo ":: Default file manager: thunar"
 fi
 
-if [ -x "$HOME/.local/bin/kumin-style.sh" ]; then
+if [ -x "$HOME/.local/bin/kumin-theme.sh" ]; then
     echo ":: Generating initial theme state..."
-    "$HOME/.local/bin/kumin-style.sh"
+    "$HOME/.local/bin/kumin-theme.sh" apply
 fi
 
 echo ""

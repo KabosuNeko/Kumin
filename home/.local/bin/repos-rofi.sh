@@ -3,13 +3,10 @@ set -eu
 
 terminal="foot"
 
-configs=$(ls -1d "$HOME"/Projects/*/ 2>/dev/null | xargs -n1 basename)
+configs=$(find "$HOME/Projects" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; 2>/dev/null)
 [ -n "$configs" ] || exit 0
-chosen=$(printf '%s\n' $configs | rofi -dmenu -p 'Projects:')
+chosen=$(printf '%s\n' "$configs" | rofi -dmenu -p 'Projects:')
 [ -n "$chosen" ] || exit 0
 dir="$HOME/Projects/$chosen"
-
-pkill -x $terminal 2>/dev/null || true
-sleep 0.1
 
 exec $terminal -e tmux new-session -As "$chosen" -c "$dir"

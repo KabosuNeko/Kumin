@@ -62,9 +62,9 @@ layout {
         position "right"
         gaps-between-tabs 4
         corner-radius 16
-        active-color "red"
-        inactive-color "gray"
-        urgent-color "blue"
+        active-color "#fabd2f"
+        inactive-color "#504945"
+        urgent-color "#fb4934"
     }
 }
 

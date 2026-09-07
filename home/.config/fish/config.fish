@@ -1,9 +1,5 @@
-## Source from conf.d before our fish config
-source ~/.config/fish/conf.d/done.fish
-
-
 ## Set values
-#Greeting
+# Greeting
 function fish_greeting
     set -l current_time (date +"%-I:%M%P")
     set -l uptime_text (uptime -p | string replace -r '^up ' '')
@@ -30,10 +26,6 @@ end
 set -x MANROFFOPT "-c"
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
-# Set settings for https://github.com/franciscolourenco/done
-set -U __done_min_cmd_duration 10000
-set -U __done_notification_urgency_level low
-
 ## Environment setup
 # Apply .profile: use this to put fish compatible .profile stuff in
 if test -f ~/.fish_profile
@@ -44,13 +36,6 @@ end
 if test -d ~/.local/bin
     if not contains -- ~/.local/bin $PATH
         set -p PATH ~/.local/bin
-    end
-end
-
-# Add depot_tools to PATH
-if test -d ~/Applications/depot_tools
-    if not contains -- ~/Applications/depot_tools $PATH
-        set -p PATH ~/Applications/depot_tools
     end
 end
 
@@ -163,13 +148,3 @@ ssh-add -l > /dev/null 2>&1
 or ssh-add ~/.ssh/id_ed25519 > /dev/null 2>&1
 
 
-# Bạn có thể tạo alias trong shell (như .bashrc hoặc .zshrc)
-alias sudachi='bash -c "$(curl -sL https://raw.githubusercontent.com/KabosuNeko/sudachi/main/sudachi.sh)"'
-
-if status is-login
-    set -Ux GTK_IM_MODULE fcitx
-    set -Ux QT_IM_MODULE fcitx
-    set -Ux XMODIFIERS @im=fcitx
-    set -Ux SDL_IM_MODULE fcitx
-    set -Ux GLFW_IM_MODULE ibus
-end

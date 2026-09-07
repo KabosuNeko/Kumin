@@ -20,5 +20,5 @@ case "$chosen" in
     *"Bluetooth"*) spawn foot -e bluetoothctl ;;
     *"System Monitor"*) spawn foot -e btm ;;
     *"Storage Manager"*) spawn foot --app-id=ncdu -e sudo ncdu / ;;
-    *"Audio Control"*) spawn foot -e pulsemixer ;;
+    *"Audio Control"*) spawn pavucontrol ;;
 esac
