@@ -58,7 +58,7 @@ wlsunset
 xdg-desktop-portal-gnome
 wl-screenrec-git
 sway-audio-idle-inhibit-git
-firefox
+firefox-pure
 playerctl
 fcitx5
 fcitx5-gtk
