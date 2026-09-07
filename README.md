@@ -30,12 +30,14 @@ Kumin is a Niri configuration for Arch-based distros. It is highly optimized (~9
 | Idle Daemon     | [Swayidle](https://github.com/swaywm/swayidle)                                        |
 | Wallpaper       | [Swaybg](https://github.com/swaywm/swaybg) |
 | System Fetch    | [Fastfetch](https://github.com/fastfetch-cli/fastfetch)                               |
-| Power Profiles  | [power-profiles-daemon](https://gitlab.freedesktop.org/upower/power-profiles-daemon)  |
-| Browser         | [Firefox](https://www.mozilla.org/firefox/)                                           |
+| Display Manager | [Ly](https://github.com/fairyglade/ly)                                                |
+| Browser         | [Firefox-pure](https://packages.cachyos.org/package/cachyos/x86_64/firefox-pure)      |
 
 - **Theme**: [Gruvbox-BL-LB-dark](https://www.gnome-look.org/p/1681313)
 - **Icons**: [Gruvbox-Plus-Icon](https://www.gnome-look.org/p/1961046)
 - **Cursor**: [Bibata-Modern-Amber](https://www.gnome-look.org/p/1914819)
+
+> **Note**: Firefox-pure is a pre-hardened Firefox build by the CachyOS team, optimized for Wayland with privacy/security defaults. It's not recommended to layer additional `user.js` configs (Betterfox, Arkenfox, etc.) on top. For standard Firefox on other distributions, you can install the regular `firefox` package instead.
 
 ## Features
 
